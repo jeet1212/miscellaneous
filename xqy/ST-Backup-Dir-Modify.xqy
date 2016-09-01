@@ -1,8 +1,7 @@
-
 xquery version "1.0-ml";
 (: 
   Written by Indrajeet Verma (Indy) 
-- This code will update the $backup-dir for all the schedule Tasks that mentioned in the database list (line no 42). 
+- This code will update the $backup-dir for all the existing schedule Tasks that mentioned in the database list (line no 42). 
 - This code will not create any new STs.
 - This code first save configurations with $updated backup-dir 
 - Then delete the existing confirgurations
@@ -25,8 +24,8 @@ declare function local:update-backup-directory($node as node(), $db) as node()
     element { fn:node-name($node) } {
       if(fn:local-name($node) = ("backup-directory")) then 
       (
-      (:E:\marklogicBackups\dbs\<db-name>:)
-      $NEW-BACK-DIR||$db
+        (:E:\marklogicBackups\dbs\<db-name>:)
+        $NEW-BACK-DIR||$db
       )
       else
       (
