@@ -1,0 +1,40 @@
+Including new service logs to logrotate
+
+Use below steps when you want to use logrotate linux utility to rotate the log files of your application.
+ 
+Step 1:
+
+/home/app/logs/app_datao2_search.log
+  are being created inside /home/app/logs
+ directory that needs to be rotated on daily basis. 
+
+First we need to create a new logrotate configuration file to accommodate for our new log file:
+
+Logged-in with sudo user (sudo su) and create below file,
+ 
+vi /etc/logrotate.d/app_datao2_search
+
+Step 2: 
+
+Insert a following text into /etc/logrotate.d/app_datao2_search:
+
+/home/app/logs/app_datao2_search.log {
+missingok
+notifempty
+compress
+daily
+rotate 7
+create 0777 www-data www-data
+}
+
+Please note, if you have multipple log files are created in the logs dir for a project, you can use *.log
+
+missingok - don't output error if log file is missing
+notifempty - don't rotate log file if it is empty
+compress - Old versions of log files are compressed with gzip(1) by default
+daily - ensures daily rotation
+rotate - Log files are rotated count times before being removed or mailed to the address specified in a mail directive. If countis 0, old versions are removed rather than rotated.
+create - creates a new log file with permissions 777 where owner and group is the root user
+ 
+Use below command to test/rotate log file manually,
+sudo logrotate  -f /etc/logrotate.d/app_datao2_search
