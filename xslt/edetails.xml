@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<envs type="sync">
+    <env>
+        <!-- INPUT_CONNECTION_STRING=xcc://admin:admin@localhost:9988/App-Services-->
+        <from>
+            <user>admin</user>
+            <pwd>admin</pwd>
+            <host>localhost</host>
+            <xport>9988</xport>
+            <db>App-Services</db>
+        </from>
+        <!--OUTPUT_CONNECTION_STRING=xcc://admin:admin@datao2.aws:9679/App-Services-->
+        <to>
+            <user>admin</user>
+            <pwd>admin</pwd>
+            <host>datao2.aws</host>
+            <xport>9679</xport>
+            <db>App-Services</db>
+        </to>
+    </env>
+    <!-- Add any number of <env> elements to create xqsync scripts in one run -->
+</envs>
